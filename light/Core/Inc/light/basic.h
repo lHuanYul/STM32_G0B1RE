@@ -4,10 +4,10 @@
 
 typedef struct LightConst
 {
-    GPIOData SER;
     GPIOData SRCLK;
     GPIOData RCLK;
     GPIOData OE;
+    GPIOData SER;
 } LightConst;
 
 typedef struct LightCtrl
@@ -26,6 +26,6 @@ typedef struct LightCtrl
 
 extern LightCtrl light_h0;
 
-#define LIGHT_ON(all,sel)       (all |= (sel))
-#define LIGHT_OFF(all,sel)      (all &= ~(sel))
-#define LIGHT_TOGGLE(all,sel)   (all ^= (sel))
+#define LIGHT_ON(all,sel)       (all.data |= (sel))
+#define LIGHT_OFF(all,sel)      (all.data &= ~(sel))
+#define LIGHT_TOGGLE(all,sel)   (all.data ^= (sel))
