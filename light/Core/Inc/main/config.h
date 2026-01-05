@@ -78,6 +78,11 @@
 #define FDCAN_TRSM_BUF_CAP      10
 #define FDCAN_RECV_BUF_CAP      10
 
+#define JSON_PKT_LEN            1024
+#define JSON_PKT_POOL_CAP       10
+#define JSON_TRSM_BUF_CAP       4
+#define JSON_RECV_BUF_CAP       4
+
 // ! Also CHECK ALL basic.c file
 // ! SYSTEM config END ------------------------------
 

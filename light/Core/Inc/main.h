@@ -67,6 +67,8 @@ void Error_Handler(void);
 #define USART2_RX_GPIO_Port GPIOA
 #define LED_GREEN_Pin GPIO_PIN_5
 #define LED_GREEN_GPIO_Port GPIOA
+#define SPI1_NSS_Pin GPIO_PIN_9
+#define SPI1_NSS_GPIO_Port GPIOD
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

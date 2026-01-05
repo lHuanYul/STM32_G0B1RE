@@ -26,6 +26,6 @@ void StartDefaultTask(void *argument)
         // GPIO_TOGGLE(light_h0.const_h.SER);
         LIGHT_TOGGLE(light_h0, light_h0.light0);
         light_load(&light_h0);
-        osDelay(2500);
+        osDelay(1000);
     }
 }

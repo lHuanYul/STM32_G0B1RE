@@ -54,6 +54,13 @@ const osThreadAttr_t defaultTask_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 128 * 4
 };
+/* Definitions for spi1Task */
+osThreadId_t spi1TaskHandle;
+const osThreadAttr_t spi1Task_attributes = {
+  .name = "spi1Task",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 256 * 4
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -61,6 +68,7 @@ const osThreadAttr_t defaultTask_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+void StartSpi1Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -94,6 +102,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
+  /* creation of spi1Task */
+  spi1TaskHandle = osThreadNew(StartSpi1Task, NULL, &spi1Task_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -120,6 +131,24 @@ __weak void StartDefaultTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_StartSpi1Task */
+/**
+* @brief Function implementing the spi1Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartSpi1Task */
+__weak void StartSpi1Task(void *argument)
+{
+  /* USER CODE BEGIN StartSpi1Task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartSpi1Task */
 }
 
 /* Private application code --------------------------------------------------*/
