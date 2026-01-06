@@ -29,6 +29,7 @@ static Result start_receive(SpiParametar *spi)
 static Result start_transmit(SpiParametar *spi)
 {
     GPIO_WRITE(spi->const_h.NSS, 0);
+    for(volatile int i = 0; i < 800; i++) __NOP();
     if (HAL_SPI_Transmit_DMA(spi->const_h.hspix, spi->tx_buf, spi->tx_buf_len) != HAL_OK)
     {
         GPIO_WRITE(spi->const_h.NSS, 1);
@@ -40,6 +41,7 @@ static Result start_transmit(SpiParametar *spi)
     return RESULT_OK(NULL);
 }
 
+uint8_t spi_test = 0;
 void StartSpi1Task(void *argument)
 {
     json_pkt_pool_init();
@@ -62,12 +64,12 @@ void StartSpi1Task(void *argument)
             {
                 while(1) osDelay(1000);
                 spi1_h.state = SPI_STATE_FINISH; 
-                osDelay(1000);
-                break;
+                goto next_loop;
             }
             case SPI_STATE_FINISH:
             {
-                spi1_h.state = SPI_STATE_RECV_HEADER;
+                if (spi_test) goto next_loop;
+                spi_test++;
                 spi->tx_buf_len = my_tx->len;
                 memcpy(spi->tx_buf, my_tx->data, my_tx->len);
                 RESULT_CHECK_GOTO(start_transmit(spi), next_loop);
@@ -92,7 +94,6 @@ void StartSpi1Task(void *argument)
                 {
                     goto next_loop;
                 }
-                while(1) osDelay(1000);
                 osDelay(100);
                 break;
             }

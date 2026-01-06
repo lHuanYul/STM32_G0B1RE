@@ -37,7 +37,10 @@ void spi1_rx_callback(void)
             ) {
                 spi->state = SPI_STATE_FINISH;
                 spi->rx_buf[spi->rx_buf_len] = '\0';
-                // ...
+                JsonPkt *pkt = RESULT_UNWRAP_HANDLE(json_pkt_pool_alloc());
+                json_pkt_set_len(pkt, spi->rx_buf_len);
+                memcpy(pkt->data, spi->rx_buf, spi->rx_buf_len + 1);
+                json_pkt_buf_push(&spi->rx_pkt_buf, pkt, 1);
                 osSemaphoreRelease(spi->rx_handle);
                 return;
             }
@@ -55,9 +58,14 @@ void spi1_tx_callback(void)
     SpiParametar *spi = &spi1_h;
     switch (spi->state)
     {
+        case SPI_STATE_FINISH:
+        {
+            spi->state = SPI_STATE_RECV_HEADER;
+            osSemaphoreRelease(spi->tx_handle);
+            return;
+        }
         case SPI_STATE_TRSM_HEADER:
         {
-            
             spi->state = SPI_STATE_TRSM_BODY;
             osSemaphoreRelease(spi->tx_handle);
             return;

@@ -6,42 +6,6 @@
 #define SPI_MASTER_ASK "$READ  "
 #define SPI_LENGTH_H    "$L:HL  "
 
-typedef struct SpiConst
-{
-    SPI_HandleTypeDef *hspix;
-    GPIOData MISO;
-    GPIOData MOSI;
-    GPIOData SCK;
-    // CS
-    GPIOData NSS;
-} SpiConst;
-
-typedef enum SpiState
-{
-    SPI_STATE_FINISH,
-    SPI_STATE_ERROR,
-    SPI_STATE_RECV_HEADER,
-    SPI_STATE_RECV_BODY,
-    SPI_STATE_TRSM_HEADER,
-    SPI_STATE_TRSM_BODY,
-} SpiState;
-
-typedef struct SpiParametar
-{
-    const SpiConst const_h;
-    SpiState state;
-    osSemaphoreId_t rx_handle;
-    const osSemaphoreAttr_t rx_handle_attr;
-    uint16_t rx_buf_len;
-    uint8_t *rx_buf;
-    osSemaphoreId_t tx_handle;
-    const osSemaphoreAttr_t tx_handle_attr;
-    uint16_t tx_buf_len;
-    uint8_t *tx_buf;
-} SpiParametar;
-
-extern SpiParametar spi1_h;
-
 typedef struct JsonPkt
 {
     uint8_t     data[JSON_PKT_LEN + 1];
@@ -70,8 +34,44 @@ typedef struct JsonPktBuf
     uint8_t     len;
     uint8_t     cap;
 } JsonPktBuf;
-extern JsonPktBuf fdcan_trsm_pkt_buf;
-extern JsonPktBuf fdcan_recv_pkt_buf;
 Result json_pkt_buf_push(JsonPktBuf* self, JsonPkt *pkt, uint8_t drop);
 Result json_pkt_buf_get(JsonPktBuf* self);
 Result json_pkt_buf_pop(JsonPktBuf* self);
+
+typedef struct SpiConst
+{
+    SPI_HandleTypeDef *hspix;
+    GPIOData MISO;
+    GPIOData MOSI;
+    GPIOData SCK;
+    // CS
+    GPIOData NSS;
+} SpiConst;
+
+typedef enum SpiState
+{
+    SPI_STATE_FINISH,
+    SPI_STATE_ERROR,
+    SPI_STATE_RECV_HEADER,
+    SPI_STATE_RECV_BODY,
+    SPI_STATE_TRSM_HEADER,
+    SPI_STATE_TRSM_BODY,
+} SpiState;
+
+typedef struct SpiParametar
+{
+    const SpiConst const_h;
+    SpiState state;
+    osSemaphoreId_t rx_handle;
+    const osSemaphoreAttr_t rx_handle_attr;
+    uint16_t rx_buf_len;
+    uint8_t *rx_buf;
+    JsonPktBuf rx_pkt_buf;
+    osSemaphoreId_t tx_handle;
+    const osSemaphoreAttr_t tx_handle_attr;
+    uint16_t tx_buf_len;
+    uint8_t *tx_buf;
+    JsonPktBuf tx_pkt_buf;
+} SpiParametar;
+
+extern SpiParametar spi1_h;

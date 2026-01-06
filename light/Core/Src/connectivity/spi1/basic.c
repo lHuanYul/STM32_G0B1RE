@@ -3,7 +3,11 @@
 #include "CoreJSON/core_json.h"
 
 __attribute__((aligned(32))) static uint8_t rx_buf[JSON_PKT_LEN + 32];
+static JsonPkt* recv_pkts[JSON_RECV_BUF_CAP];
+
 __attribute__((aligned(32))) static uint8_t tx_buf[JSON_PKT_LEN + 32];
+static JsonPkt* trsm_pkts[JSON_TRSM_BUF_CAP];
+
 SpiParametar spi1_h = {
     .const_h = {
         .hspix = &hspi1,
@@ -16,10 +20,18 @@ SpiParametar spi1_h = {
         .name = "spiRxSem"
     },
     .rx_buf = rx_buf,
+    .rx_pkt_buf = {
+        .buf = recv_pkts,
+        .cap = JSON_RECV_BUF_CAP,
+    },
     .tx_handle_attr = {
         .name = "spiTxSem"
     },
     .tx_buf = tx_buf,
+    .tx_pkt_buf = {
+        .buf = trsm_pkts,
+        .cap = JSON_TRSM_BUF_CAP,
+    },
 };
 
 JsonPktPool json_pkt_pool;
@@ -116,17 +128,7 @@ void json_pkt_pool_free(JsonPkt *pkt)
     json_pkt_pool.remain++;
 }
 
-static JsonPkt* trsm_pkt_buf[JSON_TRSM_BUF_CAP];
-JsonPktBuf fdcan_trsm_pkt_buf = {
-    .buf = trsm_pkt_buf,
-    .cap = JSON_TRSM_BUF_CAP,
-};
-static JsonPkt* recv_pkt_buf[JSON_RECV_BUF_CAP];
-JsonPktBuf fdcan_recv_pkt_buf = {
-    .buf = recv_pkt_buf,
-    .cap = JSON_RECV_BUF_CAP,
-};
-
+// 0:error 1:drop_first 2:drop_current
 Result json_pkt_buf_push(JsonPktBuf* self, JsonPkt *pkt, uint8_t drop)
 {
     if (self->len >= self->cap)
