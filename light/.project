@@ -29,4 +29,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>STM32</name>
+			<type>2</type>
+			<location>C:/Users/HuanYu/Desktop/Codes/HY_MCU_MOD/STM32</location>
+		</link>
+		<link>
+			<name>ThirdParty</name>
+			<type>2</type>
+			<location>C:/Users/HuanYu/Desktop/Codes/HY_MCU_MOD/ThirdParty</location>
+		</link>
+	</linkedResources>
 </projectDescription>

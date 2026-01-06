@@ -1,5 +1,5 @@
 #include "main/main.h"
-#include "connectivity/spi1/callback.h"
+#include "HY_MOD/connectivity/spi1/callback.h"
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
