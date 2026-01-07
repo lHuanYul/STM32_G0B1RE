@@ -79,6 +79,7 @@
 #define FDCAN_RECV_BUF_CAP      10
 
 #define HY_MOD_STM32_SPI
+#define HY_MOD_STM32_JSON
 #define JSON_PKT_LEN            1024
 #define JSON_PKT_POOL_CAP       10
 #define JSON_TRSM_BUF_CAP       4
