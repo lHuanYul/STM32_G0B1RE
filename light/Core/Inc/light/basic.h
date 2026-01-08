@@ -1,6 +1,7 @@
 #pragma once
 
 #include "main/config.h"
+#include "HY_MOD/main/typedef.h"
 
 typedef struct LightConst
 {
