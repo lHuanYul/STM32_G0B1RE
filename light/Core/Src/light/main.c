@@ -15,10 +15,12 @@ void light_load(LightCtrl *light)
     GPIO_WRITE(light->const_h.RCLK, 1);
 }
 
-uint32_t defalt_running = 0;
+#define DEFALT_TASK_DELAY_MS 50
+uint32_t defalt_running;
 void StartDefaultTask(void *argument)
 {
-    defalt_running++;
+    const uint32_t osPeriod = pdMS_TO_TICKS(DEFALT_TASK_DELAY_MS);
+    uint32_t next_wake = osKernelGetTickCount() + osPeriod;
     GPIO_WRITE(light_h0.const_h.OE, 0);
     for (;;)
     {
@@ -26,6 +28,8 @@ void StartDefaultTask(void *argument)
         // GPIO_TOGGLE(light_h0.const_h.SER);
         LIGHT_TOGGLE(light_h0, light_h0.light0);
         light_load(&light_h0);
-        osDelay(1000);
+        defalt_running = HAL_GetTick();
+        osDelayUntil(next_wake);
+        next_wake += osPeriod;
     }
 }

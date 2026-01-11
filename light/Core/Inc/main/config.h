@@ -41,10 +41,6 @@
 // #define FDCAN_FIFO1_FILTER0_ID_MIN  0x000
 // #define FDCAN_FIFO1_FILTER0_ID_MAX  0x7FF
 
-#ifndef PI // 180 deg
-#define PI  3.14159265358979f
-// #define PI  3.14159265358979323846f 
-#endif
 #define PI_MUL_2        (2.0f * PI)     // 360 deg
 #define PI_DIV_6        (PI / 6.0f)     // 30 deg
 #define PI_DIV_3        (PI / 3.0f)     // 60 deg

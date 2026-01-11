@@ -1,3 +1,5 @@
+#pragma once
+
 #include "main/config.h"
 #include "HY_MOD/connectivity/spi1/basic.h"
 #include "HY_MOD/packet/json.h"
