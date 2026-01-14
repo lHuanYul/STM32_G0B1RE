@@ -32,7 +32,7 @@ void StartSpi1Task(void *argument)
     memcpy(tx_normal->data, json_response, tx_normal->len);
     RESULT_CHECK_HANDLE(json_pkt_buf_push(&spi_trsm_buf, tx_normal, &json_pkt_pool, 0));
 
-    next_wake += osPeriod_next * 3;
+    next_wake += osPeriod_next * 5;
     osDelayUntil(next_wake);
     JsonPkt *tx_pkt = NULL;
     for(;;)

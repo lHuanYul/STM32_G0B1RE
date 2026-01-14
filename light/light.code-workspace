@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"name": "main",
+			"path": "."
+		},
+		{
+			"name": "HY_MOD",
+			"path": "../../HY_MCU_MOD/STM32"
+		},
+		{
+			"name": "ThirdParty",
+			"path": "../../HY_MCU_MOD/ThirdParty"
+		}
+	],
+	"settings": {
+		"C_Cpp.default.compilerPath": "${env:CubeIDETools}/bin/arm-none-eabi-gcc.exe",
+		"C_Cpp.default.intelliSenseMode": "gcc-arm",
+		"C_Cpp.default.includePath": [
+			"${env:CubeIDETools}/arm-none-eabi/include",
+			"${workspaceFolder:HY_MOD}/Inc/**",
+			"${workspaceFolder:ThirdParty}/**",
+			
+			"${workspaceFolder:main}/Core/Inc/**",
+			"${workspaceFolder:main}/Drivers/**",
+			"${workspaceFolder:main}/Middlewares/**",
+			"${workspaceFolder:main}/Middlewares/Third_Party/FreeRTOS/Source/include/**"
+		],
+		"C_Cpp.default.defines": [
+			"uint32_t=unsigned int"
+		]
+	}
+}
