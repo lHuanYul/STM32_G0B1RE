@@ -26,7 +26,8 @@
 #include "stm32g0xx_hal.h"
 
 #define STM32_DEVICE
-#define STM32_G431RB
+#define STM32_G0
+#define STM32_G0B1RE
 #ifndef float32_t
 #define float32_t float
 #endif

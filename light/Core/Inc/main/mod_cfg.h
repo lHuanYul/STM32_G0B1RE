@@ -1,7 +1,7 @@
 #pragma once
 
 #include "main/config.h"
-#include "HY_MOD/connectivity/spi1/basic.h"
+#include "HY_MOD/connectivity/spi_json/basic.h"
 #include "HY_MOD/packet/json.h"
 
 extern SpiParametar spi1_h;

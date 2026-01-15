@@ -1,5 +1,4 @@
 #include "main/mod_cfg.h"
-#include "HY_MOD/connectivity/spi1/basic.h"
 #include "spi.h"
 
 __attribute__((aligned(32))) static uint8_t rx_buf[JSON_PKT_LEN + 32];
