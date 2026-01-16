@@ -22,7 +22,8 @@
 #include "stm32g0xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "light/main.h"
+#include "main/mod_cfg.h"
+#include "HY_MOD/light/main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
