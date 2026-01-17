@@ -1,6 +1,6 @@
 #include "main/main.h"
-#include "main/mod_cfg.h"
-#include "HY_MOD/connectivity/spi_json/callback.h"
+#include "main/spi_json.h"
+#include "HY_MOD/spi_json/callback.h"
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
