@@ -4,13 +4,13 @@
 SPI_DMA_BUFFER_ATTR static uint8_t rx_buf[JSON_PKT_LEN];
 SPI_DMA_BUFFER_ATTR static uint8_t tx_buf[JSON_PKT_LEN];
 
-SpiParametar spi1_h = {
+SpiJsonParametar spi1_h = {
     .const_h = {
         .hspix = &hspi1,
-        .MISO = {GPIOA, GPIO_PIN_6},
-        .MOSI = {GPIOA, GPIO_PIN_7},
-        .SCK = {GPIOD, GPIO_PIN_8},
-        .NSS = {GPIOD, GPIO_PIN_9},
+        .MISO = { GPIOA, GPIO_PIN_11 },
+        .MOSI = { GPIOA, GPIO_PIN_12 },
+        .SCK  = { GPIOD, GPIO_PIN_8  },
+        .NSS  = { GPIOD, GPIO_PIN_9  },
     },
     .rx_handle_attr = {
         .name = "spiRxSem"

@@ -61,6 +61,20 @@ const osThreadAttr_t spi1Task_attributes = {
   .priority = (osPriority_t) osPriorityLow,
   .stack_size = 256 * 4
 };
+/* Definitions for LcdTask */
+osThreadId_t LcdTaskHandle;
+const osThreadAttr_t LcdTask_attributes = {
+  .name = "LcdTask",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 512 * 4
+};
+/* Definitions for LightTask */
+osThreadId_t LightTaskHandle;
+const osThreadAttr_t LightTask_attributes = {
+  .name = "LightTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -69,6 +83,8 @@ const osThreadAttr_t spi1Task_attributes = {
 
 void StartDefaultTask(void *argument);
 void StartSpi1Task(void *argument);
+void StartLcdTask(void *argument);
+void StartLightTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -104,6 +120,12 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of spi1Task */
   spi1TaskHandle = osThreadNew(StartSpi1Task, NULL, &spi1Task_attributes);
+
+  /* creation of LcdTask */
+  LcdTaskHandle = osThreadNew(StartLcdTask, NULL, &LcdTask_attributes);
+
+  /* creation of LightTask */
+  LightTaskHandle = osThreadNew(StartLightTask, NULL, &LightTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -149,6 +171,42 @@ __weak void StartSpi1Task(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartSpi1Task */
+}
+
+/* USER CODE BEGIN Header_StartLcdTask */
+/**
+* @brief Function implementing the LcdTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartLcdTask */
+__weak void StartLcdTask(void *argument)
+{
+  /* USER CODE BEGIN StartLcdTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartLcdTask */
+}
+
+/* USER CODE BEGIN Header_StartLightTask */
+/**
+* @brief Function implementing the LightTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartLightTask */
+__weak void StartLightTask(void *argument)
+{
+  /* USER CODE BEGIN StartLightTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartLightTask */
 }
 
 /* Private application code --------------------------------------------------*/

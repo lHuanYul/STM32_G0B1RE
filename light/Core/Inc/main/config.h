@@ -27,7 +27,7 @@
 
 #define STM32_DEVICE
 #define STM32_G0
-#define STM32_G0B1RE
+#define STM32G0B1RE
 #ifndef float32_t
 #define float32_t float
 #endif
@@ -63,6 +63,9 @@
 #define TIM_DTG_500ns   0x55
 #define TIM_DTG_1us     0x95
 
+#define TIM14_PSC       0
+#define TIM14_ARR       800 // Max: 65535
+
 #define FDCAN_STD_FILTER_NBR    2
 // #define FDCAN_RX0_NBR           16
 // #define FDCAN_RX1_NBR           16
@@ -83,6 +86,7 @@
 #define JSON_RECV_BUF_CAP       4
 
 #define HY_MOD_STM32_LIGHT
+#define HY_MOD_STM32_LCD_1INCH47
 
 // ! Also CHECK ALL basic.c file
 // ! SYSTEM config END ------------------------------
