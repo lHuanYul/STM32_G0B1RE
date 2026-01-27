@@ -1,13 +1,13 @@
 #include "main/main.h"
 #include "main/spi_json.h"
-#include "HY_MOD/spi_json/callback.h"
+#include "HY_MOD/spi/callback.h"
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-    spi_json_rx_cb(&spi1_h, hspi, &json_pkt_pool, &spi_recv_buf);
+    spi_rx_cb(&spi1_h.spi_p, hspi);
 }
 
 void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-    spi_json_tx_cb(&spi1_h, hspi, &json_pkt_pool, &spi_trsm_buf);
+    spi_tx_cb(&spi1_h.spi_p, hspi);
 }

@@ -5,20 +5,22 @@ SPI_DMA_BUFFER_ATTR static uint8_t rx_buf[JSON_PKT_LEN];
 SPI_DMA_BUFFER_ATTR static uint8_t tx_buf[JSON_PKT_LEN];
 
 SpiJsonParametar spi1_h = {
-    .const_h = {
-        .hspix = &hspi1,
-        .MISO = { GPIOA, GPIO_PIN_11 },
-        .MOSI = { GPIOA, GPIO_PIN_12 },
-        .SCK  = { GPIOD, GPIO_PIN_8  },
-        .NSS  = { GPIOD, GPIO_PIN_9  },
-    },
-    .rx_handle_attr = {
-        .name = "spiRxSem"
+    .spi_p = {
+        .const_h = {
+            .hspix = &hspi1,
+            .MISO = { GPIOA, GPIO_PIN_11 },
+            .MOSI = { GPIOA, GPIO_PIN_12 },
+            .SCK  = { GPIOD, GPIO_PIN_8  },
+            .NSS  = { GPIOD, GPIO_PIN_9  },
+        },
+        .rx.attr = {
+            .name = "spiRxSem"
+        },
+        .tx.attr = {
+            .name = "spiTxSem"
+        },
     },
     .rx_buf = rx_buf,
-    .tx_handle_attr = {
-        .name = "spiTxSem"
-    },
     .tx_buf = tx_buf,
 };
 
