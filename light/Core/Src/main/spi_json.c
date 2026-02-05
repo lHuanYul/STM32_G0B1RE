@@ -1,9 +1,6 @@
 #include "main/spi_json.h"
 #include "spi.h"
 
-SPI_DMA_BUFFER_ATTR static uint8_t rx_buf[JSON_PKT_LEN];
-SPI_DMA_BUFFER_ATTR static uint8_t tx_buf[JSON_PKT_LEN];
-
 SpiJsonParametar spi1_h = {
     .spi_p = {
         .const_h = {
@@ -20,8 +17,6 @@ SpiJsonParametar spi1_h = {
             .name = "spiTxSem"
         },
     },
-    .rx_buf = rx_buf,
-    .tx_buf = tx_buf,
 };
 
 JsonPktPool json_pkt_pool;

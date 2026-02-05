@@ -52,6 +52,7 @@ void EXTI4_15_IRQHandler(void);
 void DMA1_Channel1_IRQHandler(void);
 void DMA1_Channel2_3_IRQHandler(void);
 void TIM6_DAC_LPTIM1_IRQHandler(void);
+void TIM17_FDCAN_IT1_IRQHandler(void);
 void SPI1_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 

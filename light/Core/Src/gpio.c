@@ -38,6 +38,8 @@
         * Output
         * EVENT_OUT
         * EXTI
+     PD1   ------> SPI2_SCK
+     PD4   ------> SPI2_MOSI
 */
 void MX_GPIO_Init(void)
 {
@@ -117,6 +119,14 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(SPI2_NSS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PD1 PD4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF1_SPI2;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI4_15_IRQn, 3, 0);

@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "main/light.h"
 #include "HY_MOD/light/main.h"
+#include "HY_MOD/infrared/main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,8 +60,8 @@
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_spi1_rx;
 extern DMA_HandleTypeDef hdma_spi1_tx;
-extern DMA_HandleTypeDef hdma_spi2_tx;
 extern SPI_HandleTypeDef hspi1;
+extern TIM_HandleTypeDef htim17;
 extern TIM_HandleTypeDef htim6;
 
 /* USER CODE BEGIN EV */
@@ -118,6 +119,7 @@ void EXTI4_15_IRQHandler(void)
   HAL_GPIO_EXTI_IRQHandler(B1_Pin);
   /* USER CODE BEGIN EXTI4_15_IRQn 1 */
   LIGHT_TOGGLE(light_h0, light_h0.light0);
+  ir_trsm_start(&infrared_h);
   /* USER CODE END EXTI4_15_IRQn 1 */
 }
 
@@ -144,7 +146,6 @@ void DMA1_Channel2_3_IRQHandler(void)
 
   /* USER CODE END DMA1_Channel2_3_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_spi1_tx);
-  HAL_DMA_IRQHandler(&hdma_spi2_tx);
   /* USER CODE BEGIN DMA1_Channel2_3_IRQn 1 */
 
   /* USER CODE END DMA1_Channel2_3_IRQn 1 */
@@ -162,6 +163,20 @@ void TIM6_DAC_LPTIM1_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_LPTIM1_IRQn 1 */
 
   /* USER CODE END TIM6_DAC_LPTIM1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM17, FDCAN1_IT1 and FDCAN2_IT1 Interrupt.
+  */
+void TIM17_FDCAN_IT1_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM17_FDCAN_IT1_IRQn 0 */
+
+  /* USER CODE END TIM17_FDCAN_IT1_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim17);
+  /* USER CODE BEGIN TIM17_FDCAN_IT1_IRQn 1 */
+
+  /* USER CODE END TIM17_FDCAN_IT1_IRQn 1 */
 }
 
 /**

@@ -11,10 +11,6 @@
 #include <float.h>
 #include <string.h>
 
-#define ATTR_X(...) __attribute__((__VA_ARGS__))
-#define ATTR_UNUSED __attribute__((unused))
-#define ATTR_WEAK   __attribute__((weak))
-
 // ! SYSTEM config, Change CAREFULLY --------------------
 // ! Also CHECK ALL basic.c file
 // #include "arm_math.h"
@@ -31,8 +27,6 @@
 #ifndef float32_t
 #define float32_t float
 #endif
-#define ITS_CHECK(its, tag) (((its) & (tag)) != RESET)
-#define BOARD_LED_TOGGLE HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5)
 #define MCU_MOTOR_CTRL
 // #include "connectivity/cmds.h"
 #define FDCAN_FIFO0_FILTER0_ID_MIN  0x148
@@ -63,8 +57,12 @@
 #define TIM_DTG_500ns   0x55
 #define TIM_DTG_1us     0x95
 
-#define TIM14_PSC       0
-#define TIM14_ARR       800 // Max: 65535
+#define TIM15_PSC       0
+#define TIM15_ARR       420 // Max: 65535
+#define TIM15_PWM1      TIM15_ARR / 3
+
+#define TIM17_PSC       15
+#define TIM17_ARR       65535 // Max: 65535
 
 #define FDCAN_STD_FILTER_NBR    2
 // #define FDCAN_RX0_NBR           16
@@ -86,7 +84,7 @@
 #define JSON_RECV_BUF_CAP       4
 
 #define HY_MOD_STM32_LIGHT
-#define HY_MOD_STM32_LCD_1INCH47
+#define HY_MOD_IR_TRSM
 
 // ! Also CHECK ALL basic.c file
 // ! SYSTEM config END ------------------------------
