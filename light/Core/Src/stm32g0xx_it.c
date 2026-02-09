@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "main/light.h"
 #include "HY_MOD/light/main.h"
+#include "main/infrared.h"
 #include "HY_MOD/infrared/main.h"
 /* USER CODE END Includes */
 

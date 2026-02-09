@@ -61,12 +61,12 @@ const osThreadAttr_t spi1Task_attributes = {
   .priority = (osPriority_t) osPriorityLow,
   .stack_size = 256 * 4
 };
-/* Definitions for LcdTask */
-osThreadId_t LcdTaskHandle;
-const osThreadAttr_t LcdTask_attributes = {
-  .name = "LcdTask",
+/* Definitions for IRTask */
+osThreadId_t IRTaskHandle;
+const osThreadAttr_t IRTask_attributes = {
+  .name = "IRTask",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 512 * 4
+  .stack_size = 128 * 4
 };
 /* Definitions for LightTask */
 osThreadId_t LightTaskHandle;
@@ -83,7 +83,7 @@ const osThreadAttr_t LightTask_attributes = {
 
 void StartDefaultTask(void *argument);
 void StartSpi1Task(void *argument);
-void StartLcdTask(void *argument);
+void StartIRTask(void *argument);
 void StartLightTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -121,8 +121,8 @@ void MX_FREERTOS_Init(void) {
   /* creation of spi1Task */
   spi1TaskHandle = osThreadNew(StartSpi1Task, NULL, &spi1Task_attributes);
 
-  /* creation of LcdTask */
-  LcdTaskHandle = osThreadNew(StartLcdTask, NULL, &LcdTask_attributes);
+  /* creation of IRTask */
+  IRTaskHandle = osThreadNew(StartIRTask, NULL, &IRTask_attributes);
 
   /* creation of LightTask */
   LightTaskHandle = osThreadNew(StartLightTask, NULL, &LightTask_attributes);
@@ -173,22 +173,22 @@ __weak void StartSpi1Task(void *argument)
   /* USER CODE END StartSpi1Task */
 }
 
-/* USER CODE BEGIN Header_StartLcdTask */
+/* USER CODE BEGIN Header_StartIRTask */
 /**
-* @brief Function implementing the LcdTask thread.
+* @brief Function implementing the IRTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_StartLcdTask */
-__weak void StartLcdTask(void *argument)
+/* USER CODE END Header_StartIRTask */
+__weak void StartIRTask(void *argument)
 {
-  /* USER CODE BEGIN StartLcdTask */
+  /* USER CODE BEGIN StartIRTask */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END StartLcdTask */
+  /* USER CODE END StartIRTask */
 }
 
 /* USER CODE BEGIN Header_StartLightTask */

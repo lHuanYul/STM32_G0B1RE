@@ -4,19 +4,19 @@ LightCtrl light_h0 = {
     .const_h = {
         .SRCLK = {
             .GPIOx = GPIOA,
-            .GPIO_Pin_x = GPIO_PIN_4
+            .Pin = GPIO_PIN_4
         },
         .RCLK = {
             .GPIOx = GPIOB,
-            .GPIO_Pin_x = GPIO_PIN_1
+            .Pin = GPIO_PIN_1
         },
         .OE = {
             .GPIOx = GPIOA,
-            .GPIO_Pin_x = GPIO_PIN_1
+            .Pin = GPIO_PIN_1
         },
         .SER = {
             .GPIOx = GPIOA,
-            .GPIO_Pin_x = GPIO_PIN_0
+            .Pin = GPIO_PIN_0
         },
     },
     .light0 = 0b00000001,
