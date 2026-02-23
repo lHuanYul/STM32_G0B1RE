@@ -19,7 +19,14 @@ void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
 {
     ir_trsm_cb(&infrared_h, htim);
-    
+}
+
+#include "main/light.h"
+#include "HY_MOD/light/main.h"
+
+void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin)
+{
+    light_button(&light_h, GPIO_Pin);
 }
 
 #define TASK_DELAY_MS 1000

@@ -28,6 +28,7 @@
 		],
 		"C_Cpp.default.defines": [
 			"uint32_t=unsigned int"
-		]
+		],
+		"stm32-for-vscode.makePath": false
 	}
 }

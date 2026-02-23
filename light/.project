@@ -33,12 +33,12 @@
 		<link>
 			<name>STM32</name>
 			<type>2</type>
-			<location>C:/Users/HuanYu/Desktop/Codes/HY_MCU_MOD/STM32</location>
+			<location>C:/Users/joe23/Desktop/Codes/HY_MCU_MOD/STM32</location>
 		</link>
 		<link>
 			<name>ThirdParty</name>
 			<type>2</type>
-			<location>C:/Users/HuanYu/Desktop/Codes/HY_MCU_MOD/ThirdParty</location>
+			<locationURI>PARENT-2-PROJECT_LOC/HY_MCU_MOD/ThirdParty</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
